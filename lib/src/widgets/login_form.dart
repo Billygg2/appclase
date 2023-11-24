@@ -11,12 +11,17 @@ class LoginForm extends StatefulWidget {
 
 late String _email;
 late String _password;
+ final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+
+
 
 class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Form(
+         key: _formKey,
         child: Column(
           children: <Widget>[
             InputText(
@@ -25,13 +30,15 @@ class _LoginFormState extends State<LoginForm> {
               keyboard: TextInputType.emailAddress,
               icono: const Icon(Icons.verified_user),
               onChanged: (data) {
-                _email = data!;
+                setState(() {
+                  _email = data;
+                });
               },
               validator: (data) {
-                if (data!.contains("@")) {
+                if (!data!.contains("@") || data.trim().isEmpty) {
                   return "Email invalido";
                 }
-                return null!;
+                return null;
               },
             ),
             Divider(height: 20.0),
@@ -41,25 +48,29 @@ class _LoginFormState extends State<LoginForm> {
               keyboard: TextInputType.text,
               icono: const Icon(Icons.password),
               onChanged: (data) {
-                _password = data!;
+                setState(() {
+                  _password = data;
+                });
               },
               validator: (data) {
-                if (data?.trim().length == 0) {
+                if (data!.trim().isEmpty) {
                   return "Contraseña invalida";
                 }
-                return null!;
+                return null;
               },
             ),
             Divider(height: 20.0),
             SizedBox(
               width: double.infinity,
               height: 60.0,
-              child: ElevatedButton(
+             child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MenuLateral())
-                  );
+                  if (_formKey.currentState!.validate()) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MenuLateral()),
+                    );
+                  }
                 },
                 child: const Text(
                   "Log In",
