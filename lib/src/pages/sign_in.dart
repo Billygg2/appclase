@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:navegar/src/pages/home_page.dart';
-import 'package:navegar/src/pages/sign_up.dart';
 import 'package:navegar/src/widgets/login_form.dart';
 
 import '../widgets/icon_containers.dart';
@@ -22,9 +20,9 @@ class _SignInState extends State<SignIn> {
           height: double.infinity,
           decoration: const BoxDecoration(
               gradient: LinearGradient(colors: <Color>[
-            Color.fromARGB(255, 50, 49, 51),
+            Color.fromARGB(222, 149, 178, 225),
             Color.fromARGB(204, 162, 162, 162),
-            Color.fromARGB(158, 0, 0, 0),
+            Color.fromARGB(255, 203, 108, 108),
           ], begin: Alignment.topLeft)),
           child: ListView(
             padding: const EdgeInsets.symmetric(

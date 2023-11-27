@@ -20,9 +20,9 @@ class _SignUpState extends State<SignUp> {
           height: double.infinity,
           decoration: const BoxDecoration(
               gradient: LinearGradient(colors: <Color>[
-            Color.fromARGB(255, 223, 160, 33),
-            Color.fromARGB(204, 108, 76, 12),
-            Color.fromARGB(204, 123, 74, 11),
+            Color.fromARGB(255, 182, 163, 124),
+            Color.fromARGB(204, 155, 151, 144),
+            Color.fromARGB(204, 224, 219, 212),
           ], begin: Alignment.topLeft)),
           child: ListView(
             padding: const EdgeInsets.symmetric(

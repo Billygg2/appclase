@@ -46,7 +46,7 @@ class _LoginFormState extends State<LoginForm> {
               hint: "User password",
               label: "User password",
               keyboard: TextInputType.text,
-              icono: const Icon(Icons.password),
+              icono: const Icon(Icons.lock),
               onChanged: (data) {
                 setState(() {
                   _password = data;

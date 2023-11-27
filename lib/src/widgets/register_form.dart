@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:navegar/src/pages/sign_in.dart';
 import 'package:navegar/src/widgets/input_text.dart';
@@ -19,6 +18,7 @@ class _RegisterFormState extends State<RegisterForm> {
   late bool _validatedName;
   late bool _validatedEmail;
   late bool _validatedPassword;
+  late bool _acceptedTerms = false;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -67,7 +67,7 @@ class _RegisterFormState extends State<RegisterForm> {
               hint: "Name",
               label: "Name",
               keyboard: TextInputType.text,
-              icono: const Icon(Icons.text_decrease),
+              icono: const Icon(Icons.text_fields),
               onChanged: (data) {
                 setState(() {
                   _name = data;
@@ -109,7 +109,7 @@ class _RegisterFormState extends State<RegisterForm> {
               label: "User password",
               keyboard: TextInputType.text,
               obsecure: true,
-              icono: const Icon(Icons.password),
+              icono: const Icon(Icons.lock),
               onChanged: (data) {
                 setState(() {
                   _password = data;
@@ -125,6 +125,25 @@ class _RegisterFormState extends State<RegisterForm> {
               },
             ),
             Divider(height: 20.0),
+            Row(
+              children: [
+                Checkbox(
+                  value: _acceptedTerms,
+                  onChanged: (data) {
+                    setState(() {
+                      _acceptedTerms = data!;
+                    });
+                  },
+                ),
+                Text("Acepto los términos y condiciones"),
+                if (!_acceptedTerms)
+                  Text(
+                    " ¡Por favor, marque el checkbox!",
+                    style: TextStyle(color: Colors.red),
+                  ),
+              ],
+            ),
+            Divider(height: 20.0),
             SizedBox(
               width: double.infinity,
               height: 60.0,
@@ -134,7 +153,8 @@ class _RegisterFormState extends State<RegisterForm> {
                   if (_validatedEmail == true &&
                       _validatedName == true &&
                       _validatedPassword == true &&
-                      _validatedUsername == true) {
+                      _validatedUsername == true &&
+                      _acceptedTerms == true) {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => SignIn()));
                   }
