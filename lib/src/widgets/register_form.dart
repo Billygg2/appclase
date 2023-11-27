@@ -53,10 +53,11 @@ class _RegisterFormState extends State<RegisterForm> {
                 });
               },
               validator: (data) {
-                if (data == null || data.trim().isEmpty) {
+                if (data == null || data is! String || data.trim().isEmpty) {
                   return "Usuario invalido";
-                }
-                {
+                } else if (data.contains(RegExp(r'[0-9]'))) {
+                  return "El usuario no puede contener números";
+                } else {
                   _validatedUsername = true;
                 }
                 return null;
@@ -74,10 +75,11 @@ class _RegisterFormState extends State<RegisterForm> {
                 });
               },
               validator: (data) {
-                if (data!.trim().isEmpty) {
+                if (data == null || data is! String || data.trim().isEmpty) {
                   return "Nombres invalidos";
-                }
-                {
+                } else if (data.contains(RegExp(r'[0-9]'))) {
+                  return "Los nombres no pueden contener números";
+                } else {
                   _validatedName = true;
                 }
                 return null;
@@ -95,7 +97,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 });
               },
               validator: (data) {
-                if (!data!.contains("@") || data.trim().isEmpty) {
+                if (data == null || !data.contains("@") || data.trim().isEmpty) {
                   return "Email invalido";
                 } else {
                   _validatedEmail = true;
@@ -116,7 +118,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 });
               },
               validator: (data) {
-                if (data!.trim().isEmpty) {
+                if (data == null || data.trim().isEmpty) {
                   return "Contraseña invalida";
                 } else {
                   _validatedPassword = true;
@@ -150,11 +152,11 @@ class _RegisterFormState extends State<RegisterForm> {
               child: ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {}
-                  if (_validatedEmail == true &&
-                      _validatedName == true &&
-                      _validatedPassword == true &&
-                      _validatedUsername == true &&
-                      _acceptedTerms == true) {
+                  if (_validatedEmail &&
+                      _validatedName &&
+                      _validatedPassword &&
+                      _validatedUsername &&
+                      _acceptedTerms) {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => SignIn()));
                   }

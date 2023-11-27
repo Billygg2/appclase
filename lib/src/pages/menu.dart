@@ -11,7 +11,7 @@ class MenuLateral extends StatelessWidget {
           backgroundColor: const Color.fromARGB(255, 122, 218, 101)),
       body: const Center(
         child: Center(
-          child: Text('Contenido del proyecto'),
+          child: Text('Por Billy Salmerón En clase'),
         ),
       ),
       drawer: Drawer(
